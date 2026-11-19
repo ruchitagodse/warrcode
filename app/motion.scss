@@ -1,0 +1,138 @@
+// Motion-only overrides. Existing dimensions, content and design tokens remain
+// in globals.scss. Composited transforms/opacity carry the principal motion.
+$editorial-ease: cubic-bezier(.22, 1, .36, 1);
+$quiet-ease: cubic-bezier(.25, .46, .45, .94);
+
+.hero-content { animation: none; }
+.hero-images { animation: campaign-reveal 1.25s $editorial-ease backwards; }
+.hero-image img { animation: campaign-settle 1.7s $editorial-ease backwards; }
+.hero-image-right img { animation-delay: 80ms; }
+.hero-word { display: inline-block; animation: word-enter .95s $editorial-ease backwards; }
+.hero-word-one { animation-delay: 120ms; }
+.hero-word-two { animation-delay: 240ms; }
+.hero-word-three { animation-delay: 360ms; }
+.hero-content > .eyebrow { animation: editorial-up .8s $editorial-ease 100ms backwards; }
+.hero-description { animation: editorial-up .8s $editorial-ease 470ms backwards; }
+.hero-actions .button { animation: editorial-up .75s $editorial-ease 580ms backwards; }
+.hero-actions .button + .button { animation-delay: 660ms; }
+.hero-top, .hero-bottom { animation: quiet-fade 1s ease 400ms backwards; }
+
+.header { transition: box-shadow .35s $quiet-ease; }
+.header[data-scrolled=true] { box-shadow: 0 8px 24px #20211e0b; }
+.header nav > :is(a, button)::after { width: 100%; transform: scaleX(0); transform-origin: right; transition: transform .36s $editorial-ease; }
+.header nav > :is(a, button):is(:hover, :focus-visible)::after { transform: scaleX(1); transform-origin: left; }
+.bag-count[data-updated=true] { animation: badge-settle .4s $editorial-ease; }
+.bag-button[data-has-items=true] > svg { animation: bag-feedback .45s $editorial-ease; }
+.icon-button { transition: opacity .2s ease, transform .25s $quiet-ease; }
+.icon-button:active { transform: scale(.94); }
+
+[data-reveal] {
+  transition: opacity .7s $editorial-ease, transform .8s $editorial-ease, clip-path .95s $editorial-ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal-state=pending] { opacity: 0; transform: translate3d(0, 18px, 0); }
+[data-reveal=image][data-reveal-state=pending] { transform: translate3d(0, 10px, 0); clip-path: inset(0 0 6% 0); }
+[data-reveal-state=visible] { opacity: 1; transform: none; clip-path: inset(0); }
+[data-reveal]:focus-within { opacity: 1; transform: none; clip-path: inset(0); transition-delay: 0ms; }
+.category-card > div { transition: transform .8s $editorial-ease, opacity .7s ease; }
+.category-card[data-reveal-state=pending] > div { transform: translateY(12px); opacity: 0; }
+.category-card[data-reveal-state=visible] > div { transform: none; opacity: 1; transition-delay: 90ms; }
+.category-card:focus-within > div { transform: none; opacity: 1; }
+.category-card img, .product-photo img, .social-grid img { transition: transform .85s $editorial-ease; }
+.filter-row button { transition: color .25s ease, border-color .3s ease; }
+.filter-row button[aria-pressed=true] { animation: quiet-fade .32s ease; }
+
+.product-photo .quick-view { opacity: 0; transform: translateY(6px); pointer-events: none; transition: opacity .26s ease, transform .38s $editorial-ease; }
+.product-photo:is(:hover, :focus-within) .quick-view { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.quick-add { transition: transform .3s $editorial-ease, background .25s ease; }
+.quick-add:active { transform: scale(.94); }
+.button { transition: background .25s ease, color .25s ease, border-color .25s ease, transform .35s $editorial-ease; }
+.button svg { transition: transform .35s $editorial-ease; }
+.sizes button, .color-option { transition: background .2s ease, color .2s ease, border-color .2s ease, transform .22s $editorial-ease; }
+.sizes button:active, .color-option:active { transform: scale(.96); }
+
+// Only the campaign image moves; its containing box and text stay in place.
+@media (min-width: 851px) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .winter-photo { overflow: hidden; }
+  .winter-photo img { transform: translate3d(0, var(--parallax-y, 0px), 0) scale(1.045); }
+  .winter-feature[data-parallax=true] .winter-photo img { will-change: transform; }
+}
+
+.modal[open] { animation: modal-enter .36s $editorial-ease backwards; }
+.modal.drawer[open] { animation: drawer-enter .44s $editorial-ease backwards; }
+.modal[open]::backdrop { animation: quiet-fade .3s ease backwards; }
+.modal[data-closing=true] { animation: modal-leave .19s ease forwards; }
+.modal.drawer[data-closing=true] { animation: drawer-leave .19s ease forwards; }
+.modal[data-closing=true]::backdrop { animation: quiet-leave .19s ease forwards; }
+.motion-exit-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 3; }
+.mobile-menu nav > :is(a, button) { animation: editorial-up .55s $editorial-ease 100ms backwards; }
+@for $i from 2 through 5 {
+  .mobile-menu nav > :nth-child(#{$i}) { animation-delay: #{60 + $i * 40}ms; }
+}
+.bag-item { animation: bag-line-enter .38s $editorial-ease backwards; }
+.bag-item:nth-child(2) { animation-delay: 35ms; }
+.bag-item:nth-child(3) { animation-delay: 70ms; }
+.empty-bag { animation: editorial-up .4s $editorial-ease backwards; }
+.amount-change { display: inline-block; animation: amount-enter .3s $editorial-ease; }
+.quantity button { transition: opacity .2s ease, transform .2s $editorial-ease; }
+.quantity button:active { transform: scale(.9); }
+.cart-toast { animation: toast-life 5s $editorial-ease both; }
+.order-preview, .checkout-confirmation { animation: editorial-up .4s $editorial-ease backwards; }
+
+.text-link {
+  border-bottom-color: transparent;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+}
+.footer-top > div:not(.footer-brand) > :is(a, button) { position: relative; }
+.footer-top > div:not(.footer-brand) > :is(a, button)::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .35s $editorial-ease; }
+.footer-top > div:not(.footer-brand) > :is(a, button):focus-visible::after { transform: scaleX(1); transform-origin: left; }
+@media (hover: hover) and (pointer: fine) {
+  .button:hover { transform: translateY(-2px); }
+  .button:hover svg { transform: translateY(-1px); }
+  .quick-add:hover { transform: scale(1.06); }
+  .text-link:hover { animation: underline-travel .5s $quiet-ease; }
+  .footer-top > div:not(.footer-brand) > :is(a, button):hover::after { transform: scaleX(1); transform-origin: left; }
+}
+.button:active { transform: scale(.985); }
+
+@keyframes campaign-reveal { from { clip-path: inset(0 0 5% 0); opacity: .65; } to { clip-path: inset(0); opacity: 1; } }
+@keyframes campaign-settle { from { transform: scale(1.055); } to { transform: scale(1); } }
+@keyframes word-enter { from { opacity: 0; transform: translate3d(0, 22px, 0); } to { opacity: 1; transform: none; } }
+@keyframes editorial-up { from { opacity: 0; transform: translate3d(0, 12px, 0); } to { opacity: 1; transform: none; } }
+@keyframes quiet-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes quiet-leave { to { opacity: 0; } }
+@keyframes badge-settle { 0% { transform: scale(.82); } 55% { transform: scale(1.12); } 100% { transform: scale(1); } }
+@keyframes bag-feedback { 0% { transform: translateY(0); } 40% { transform: translateY(-2px); } 100% { transform: translateY(0); } }
+@keyframes modal-enter { from { opacity: 0; transform: translateY(8px) scale(.985); } to { opacity: 1; transform: none; } }
+@keyframes modal-leave { to { opacity: 0; transform: translateY(5px) scale(.99); } }
+@keyframes drawer-enter { from { opacity: .8; transform: translateX(100%); } to { opacity: 1; transform: none; } }
+@keyframes drawer-leave { to { opacity: 0; transform: translateX(24px); } }
+@keyframes bag-line-enter { from { opacity: 0; transform: translateX(8px); } to { opacity: 1; transform: none; } }
+@keyframes amount-enter { from { opacity: .3; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+@keyframes toast-life {
+  0% { opacity: 0; transform: translateY(10px); }
+  8%, 91% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY(5px); }
+}
+@keyframes underline-travel {
+  0% { background-size: 100% 1px; background-position: right bottom; }
+  45% { background-size: 0% 1px; background-position: right bottom; }
+  46% { background-size: 0% 1px; background-position: left bottom; }
+  100% { background-size: 100% 1px; background-position: left bottom; }
+}
+
+@media (max-width: 600px) {
+  [data-reveal] { transition-duration: .5s, .6s, .65s; }
+  [data-reveal-state=pending] { transform: translateY(10px); }
+  .hero-word { animation-duration: .75s; }
+  .modal.drawer[open] { animation-duration: .34s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  [data-reveal], [data-reveal-state=pending], .category-card > div { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+  .winter-photo img, .hero-image img, .hero-word, .button, .quick-add, .icon-button, .quantity button, .sizes button, .color-option { transform: none !important; }
+  .category-card:hover img, .product-photo:hover img, .social-grid button:hover img, .button:hover svg { transform: none !important; }
+}

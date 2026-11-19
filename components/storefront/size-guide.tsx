@@ -1,0 +1,3 @@
+export function SizeGuide() {
+  return <div className="size-guide"><p className="eyebrow">DEMO SIZE & FIT GUIDE</p><h2>Find your fit.</h2><p>XS, S, M, L and XL are sample size options for this demonstration. They do not represent verified stock or measurements.</p><dl><dt>Chest</dt><dd>Measure around the fullest part of your chest, keeping the tape level.</dd><dt>Waist</dt><dd>Measure around your natural waist without pulling the tape tight.</dd><dt>Compare a favourite</dt><dd>Use a garment you already own as a reference for your preferred silhouette.</dd></dl><p className="demo-policy">Exact garment measurements, material details and fit recommendations must be supplied by WARRCODE before ordering. No numeric size chart has been invented.</p></div>;
+}
