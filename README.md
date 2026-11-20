@@ -48,9 +48,9 @@ Category navigation, mobile menu, search by name/colour/category, quick view, si
 
 All product names, prices, descriptions, sizing, category assignments and best-seller claims are demo content. Product composition, measurements, availability, taxes, shipping and return terms require confirmation. Supplied photography is real project input; it does not establish the final stock list or garment specifications.
 
-Set `brand.whatsappNumber` in `lib/catalog.ts` to the verified international number (country code plus digits). The bag CTA then opens `wa.me` with the encoded order enquiry. Until configured, it shows an honest message preview and sends nothing. No payments, order database, shipping service or backend are implemented.
+The supplied WhatsApp number is configured as `919372321663` in `lib/catalog.ts` (India +91). Product and bag enquiry buttons open `wa.me` with the encoded enquiry for the customer to review and send. No payments, order database, shipping service or backend are implemented.
 
-Set `brand.instagramUrl` to the verified official HTTPS profile URL. Until supplied, social buttons explain that the profile is pending. A domain has not been configured.
+The supplied Instagram handle `prospera____` is configured as `https://www.instagram.com/prospera____/`. Social buttons use this profile. A domain has not been configured.
 
 ## Verification
 

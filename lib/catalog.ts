@@ -8,7 +8,7 @@ export const assets = {
   rust: "/images/rust-crew.webp", cream: "/images/cream-crew.webp", trousers: "/images/espresso-trousers.webp",
 };
 // Only verified client contact details belong here. Empty values use local previews.
-export const brand = { whatsappNumber: "", instagramUrl: "" };
+export const brand = { whatsappNumber: "919372321663", instagramUrl: "https://www.instagram.com/prospera____/" };
 export const demoShippingThreshold = 150;
 export type Category = "All" | "Men" | "Women" | "Winter";
 export type Product = {
