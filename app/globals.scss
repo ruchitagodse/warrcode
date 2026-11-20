@@ -139,3 +139,23 @@ footer { background: $ink; color: #e7e4db; padding: 65px 4% 20px; }
 .checkout-total { display: flex; justify-content: space-between; gap: 15px; font-size: .875rem; margin-top: 25px; }
 .checkout-confirmation { padding: 90px 8%; text-align: center; > svg { width: 48px; height: 48px; color: #35523e; margin-bottom: 25px; } h2 { @include display-type; font-size: 40px; line-height: 1.15; } > p:not(.eyebrow) { font-size: 1rem; color: #67655d; line-height: 1.8; max-width: 540px; margin: 0 auto 30px; } }
 @media(max-width:600px) { .checkout { padding: 65px 23px 30px; } .checkout-grid { grid-template-columns: 1fr; gap: 30px; aside { grid-row: 1; padding: 18px; } } .shipping-progress { padding: 22px 23px 0; } .cart-toast { right: 15px; bottom: 15px; } .size-guide { padding: 65px 23px 30px; h2 { font-size: 38px; } } .checkout-confirmation { padding: 75px 24px 40px; h2 { font-size: 34px; } } }
+
+// Desktop composition: keep the headline within the left campaign panel and
+// reserve independent space for the top/bottom captions. Mobile is unchanged.
+@media (min-width: 851px) {
+  .hero-content {
+    width: 54%;
+    max-width: none;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 76px 3% 88px 7%;
+  }
+  .hero h1 { font-size: clamp(52px, 5.8vw, 112px); }
+  .hero-image-left img { object-position: center 15%; }
+  .hero-image-right img { object-position: center 12%; }
+  .product-photo .quick-view { left: 0; right: 0; width: auto; min-height: 44px; }
+  .product-photo:is(:hover, :focus-within) .quick-add { transform: translateY(-44px); }
+}
